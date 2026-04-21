@@ -228,8 +228,9 @@ def make_megatron_module(
 
     if override_model_config is None:
         override_model_config = {}
-
+    
     if bridge is not None:
+        bridge.hf_config['tie_word_embeddings']=wrap_config.share_embeddings_and_output_weights
         if provider is None:
             from verl.models.mcore.mbridge import freeze_moe_router, make_value_model
 
